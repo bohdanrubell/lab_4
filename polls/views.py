@@ -3,22 +3,22 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'index.html')
 
-def operation1(request):
+def create(request):
     # Логіка операції 1
-    return render(request, 'operation1.html')
+    return render(request, 'create.html')
 
-def operation2(request):
+def list(request):
     # Логіка операції 2
-    return render(request, 'operation2.html')
+    return render(request, 'list.html')
 
-def operation3(request):
+def delete(request):
     # Логіка операції 3
-    return render(request, 'operation3.html')
+    return render(request, 'delete.html')
 
-def operation4(request):
+def update(request):
     # Логіка операції 4
-    return render(request, 'operation4.html')
+    return render(request, 'update.html')
 
-def operation5(request):
+def details(request):
     # Логіка операції 5
-    return render(request, 'operation5.html')
+    return render(request, 'details.html')
