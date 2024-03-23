@@ -1,6 +1,12 @@
-def isOptionHasCorrectLengthTo_50(option):
-    if len(option) < 50 or len(option) != 0:
+import re
+def isOptionHasCorrectLengthTo_25(option):
+    if len(option) < 25 and len(option) != 0:
         return True
-def isOptionHasCorrectLengthTo_100(option):
-    if len(option) < 100 or len(option) != 0:
+
+
+def isOptionHasCorrectLengthTo_20(option):
+    if len(option) < 20 and len(option) != 0:
         return True
+
+def isContainsOnlyLetters(value):
+    return bool(re.match("^[a-zA-Z]+$", value))

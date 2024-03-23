@@ -1,44 +1,66 @@
+from django.http import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
+from polls.forms import CompanyForm, EmployeeForm
 from polls.models import Company
 from polls.services import validation
+
+
 def index(request):
     return render(request, 'index.html')
 
-def create(request):
-    if(request.method == 'POST'):
-        name = request.POST.get('inputNameCompany')
-        spec = request.POST.get('inputSpecialityCompany')
-        locate = request.POST.get('inputLocationCompany')
 
-        if validation.isOptionHasCorrectLengthTo_50(name):
-            return render(request, 'create.html', {'error_message': 'The name must '
-                                                                    'be between 1 and 50 characters.'})
-        if validation.isOptionHasCorrectLengthTo_100(spec):
-            return render(request, 'create.html', {'error_message': 'The speciality must be '
-                                                                    'between 1 and 100 characters.'})
-        if validation.isOptionHasCorrectLengthTo_50(locate):
-            return render(request, 'create.html', {'error_message': 'The locate must be between '
-                                                                    '1 and 100 characters.'})
-        try:
-            obj = Company.objects.create(name=name, speciality=spec, locate=locate)
+# @csrf_exempt
+def createCompany(request):
+    print(f"Request POST: {request.POST}")
+    if request.method == 'POST':
+        form = CompanyForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            speciality = form.cleaned_data['speciality']
+            locate = form.cleaned_data['locate']
+            if Company.objects.filter(name=name).exists():
+                return render(request, 'createCompany.html',
+                              {'exist__error': 'The company already exists.', 'form': form})
+            obj = Company.objects.create(name=name, speciality=speciality, locate=locate)
             obj.save()
-        except ValueError:
-            return render(request, 'create.html', {'error': 'Invalid input'})
+            return render(request, 'createCompany.html',
+                          {'success_message': 'The company was successfully added', 'form': form})
+        else:
+            errors = form.errors
+            return render(request, 'createCompany.html', {'form': form, 'errors': errors})
+    else:
+        form = CompanyForm()
+    return render(request, 'createCompany.html', {'form': form})
 
-    return render(request, 'create.html')
+
+def createEmployee(request):
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            company = form.cleaned_data['company']
+            name = form.cleaned_data['name']
+            position = form.cleaned_data['position']
+            salary = form.cleaned_data['salary']
+    else:
+        form = EmployeeForm()
+    return render(request, 'createEmployee.html',
+                  {'companies': Company.objects.all(),
+                           'form': form})
+
 
 def list(request):
-    # Логіка операції 2
     return render(request, 'list.html')
 
+
 def delete(request):
-    # Логіка операції 3
     return render(request, 'delete.html')
 
+
 def update(request):
-    # Логіка операції 4
     return render(request, 'update.html')
 
+
 def details(request):
-    # Логіка операції 5
     return render(request, 'details.html')
