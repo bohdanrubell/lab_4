@@ -4,20 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0decd285-0974-4dda-af18-76aaeab42295" name="Changes" comment="C">
-      <change afterPath="$PROJECT_DIR$/lab_4/static/js/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/polls/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/createCompany.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/createEmployee.html" afterDir="false" />
+    <list default="true" id="0decd285-0974-4dda-af18-76aaeab42295" name="Changes" comment="Recreated for forms.">
+      <change afterPath="$PROJECT_DIR$/templates/company_update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/delete_company.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/services/validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/services/validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/createEmployee.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/createEmployee.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/js/script.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +125,8 @@
       <workItem from="1711012596640" duration="5309000" />
       <workItem from="1711018075808" duration="2833000" />
       <workItem from="1711183171269" duration="17766000" />
-      <workItem from="1711224498091" duration="943000" />
+      <workItem from="1711224498091" duration="4555000" />
+      <workItem from="1711381825879" duration="11523000" />
     </task>
     <task id="LOCAL-00001" summary="Project has created">
       <option name="closed" value="true" />
@@ -171,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710969831750</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Recreated for forms.">
+      <option name="closed" value="true" />
+      <created>1711225676996</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711225676996</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +199,7 @@
     <MESSAGE value="Created the main page" />
     <MESSAGE value="Created templates for applicaion.&#10;Urls and views have been updated." />
     <MESSAGE value="Created a page with C operation(Create) but only Company.&#10;JS has been added &#10;Validation has been added&#10;Need to fix  bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created a page with C operation(Create) but only Company.&#10;JS has been added &#10;Validation has been added&#10;Need to fix  bugs" />
+    <MESSAGE value="Recreated for forms." />
+    <option name="LAST_COMMIT_MESSAGE" value="Recreated for forms." />
   </component>
 </project>

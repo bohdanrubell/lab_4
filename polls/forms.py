@@ -21,8 +21,13 @@ class EmployeeForm(forms.ModelForm):
         fields = ('company', 'name', 'position', 'salary')
 
         widgets = {
-            'company': forms.Select(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'position': forms.TextInput(attrs={'class': 'form-control'}),
             'salary': forms.NumberInput(attrs={'class': 'form-control'})
         }
+
+    def __init__(self, *args, **kwargs):
+        super(EmployeeForm, self).__init__(*args, **kwargs)
+        self.fields['company'].widget = forms.Select(attrs={'class': 'form-control'})
+        self.fields['company'].empty_label = '---SELECT---'
+        self.fields['company'].queryset = Company.objects.all()
