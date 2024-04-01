@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from polls.forms import CompanyForm, EmployeeForm
 from polls.models import Company, Employee
-from polls.services import validation
+from polls.services import companyManager, employeeManager
 
 
 def index(request):
@@ -21,9 +21,9 @@ def createCompany(request):
             locate = form.cleaned_data['locate']
             if Company.objects.filter(name=name).exists():
                 return render(request, 'createCompany.html',
-                              {'exist__error': 'The company already exists.', 'form': form})
-            obj = Company.objects.create(name=name, speciality=speciality, locate=locate)
-            obj.save()
+                              {'exist__error': 'The company already exists. Please create another', 'form': form})
+
+            companyManager.createCompany(name=name, speciality=speciality, locate=locate)
             return render(request, 'createCompany.html',
                           {'success_message': 'The company was successfully added', 'form': form})
         else:
@@ -35,7 +35,6 @@ def createCompany(request):
 
 
 def createEmployee(request):
-    print(f"Request POST: {request.POST}")
     companies = Company.objects.all()
     form = EmployeeForm(initial={'company': companies})
     if request.method == 'POST':
@@ -45,34 +44,21 @@ def createEmployee(request):
             name = form.cleaned_data['name']
             position = form.cleaned_data['position']
             salary = form.cleaned_data['salary']
+            if not employeeManager.isHasRightSalary(salary):
+                return render(request, 'createEmployee.html', {'form': form,
+                                                               'exist__error': "The salary isn't correct,"
+                                                                               "please try again(from 1 to 100000$)"})
 
-            obj = Employee(company=company, name=name, position=position, salary=salary)
-            obj.save()
+            if employeeManager.ifExists(company=company, name=name, position=position,salary=salary):
+                return render(request, 'createEmployee.html',
+                          {'exist__error': 'The employee already exists. Please create another', 'form': form})
+            employeeManager.createEmployee(company=company, name=name, position=position,salary=salary)
+            return render(request, 'createEmployee.html', {'success_message': 'The employee was successfully added', 'form': EmployeeForm()})
     else:
         form = EmployeeForm()
     return render(request, 'createEmployee.html',
                   {'companies': Company.objects.all(),
                    'form': form})
-
-
-def list(request):
-    success_message = request.session.pop('success_message', None)
-    employees = Employee.objects.all()
-    companies = Company.objects.all()
-    if success_message:
-        return render(request, 'list.html',
-                      {'success_message': success_message,
-                       'employees': employees,
-                       'companies': companies})
-    else:
-        return render(request, 'list.html',
-                      {'employees': employees,
-                       'companies': companies})
-
-
-def details(request):
-    return render(request, 'details.html')
-
 
 def update_company(request, company_id):
     company = get_object_or_404(Company, pk=company_id)
@@ -82,7 +68,7 @@ def update_company(request, company_id):
             form.save()
             success_message = "The company was successfully updated."
             request.session['success_message'] = success_message
-            return redirect('list')
+            return redirect('listCompany')
     else:
         form = CompanyForm(instance=company)
     return render(request, 'company_update.html', {'formCompany': form})
@@ -94,5 +80,47 @@ def delete_company(request, company_id):
         company.delete()
         success_message = "The company was successfully deleted."
         request.session['success_message'] = success_message
-        return redirect('list')  # Перенаправляем на страницу списка сотрудников
+        return redirect('listCompany')
     return render(request, 'delete_company.html', {'company': company})
+
+def listCompany(request):
+    success_message = request.session.pop('success_message', None)
+    companies = Company.objects.all()
+    return render(request, 'listCompany.html',
+                  {'companies': companies,
+                   'success_message': success_message})
+
+def listEmployee(request):
+    success_message = request.session.pop('success_message', None)
+    employees = Employee.objects.all()
+    return render(request, 'listEmployee.html',
+                  {'employees': employees,
+                   'success_message': success_message})
+
+
+def update_employee(request, employee_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST, instance=employee)
+        if form.is_valid():
+            if not employeeManager.isHasRightSalary(form.cleaned_data['salary']):
+                return render(request, 'employee_update.html', {'formEmployee': EmployeeForm(instance=employee),
+                                                               'exist__error': "The salary isn't correct,"
+                                                                               "please try again(from 1 to 100000$)"})
+            form.save()
+            success_message = "The employee was successfully updated."
+            request.session['success_message'] = success_message
+            return redirect('listEmployee')
+    else:
+        form = EmployeeForm(instance=employee)
+    return render(request, 'employee_update.html', {'formEmployee': form})
+
+
+def delete_employee(request, employee_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    if request.method == 'POST':
+        employee.delete()
+        success_message = "The employee was successfully deleted."
+        request.session['success_message'] = success_message
+        return redirect('listEmployee')
+    return render(request, 'delete_company.html', {'employee': employee})

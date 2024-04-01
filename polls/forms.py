@@ -9,9 +9,11 @@ class CompanyForm(forms.ModelForm):
         fields = ('name', 'speciality', 'locate')
 
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name of company'}),
-            'speciality': forms.TextInput(attrs={'class': 'form-control'}),
-            'locate': forms.TextInput(attrs={'class': 'form-control'})
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Name of company'}),
+            'speciality': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Speciality of company'}),
+            'locate': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Locate of company'})
         }
 
 
@@ -21,9 +23,9 @@ class EmployeeForm(forms.ModelForm):
         fields = ('company', 'name', 'position', 'salary')
 
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'position': forms.TextInput(attrs={'class': 'form-control'}),
-            'salary': forms.NumberInput(attrs={'class': 'form-control'})
+            'name': forms.TextInput(attrs={'class': 'form-control' , 'placeholder': 'Name of employee'}),
+            'position': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Position of employee'}),
+            'salary': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Salary of employee'})
         }
 
     def __init__(self, *args, **kwargs):

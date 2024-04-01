@@ -4,17 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0decd285-0974-4dda-af18-76aaeab42295" name="Changes" comment="Recreated for forms.">
-      <change afterPath="$PROJECT_DIR$/templates/company_update.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/delete_company.html" afterDir="false" />
+    <list default="true" id="0decd285-0974-4dda-af18-76aaeab42295" name="Changes" comment="Added more functions.">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/polls/services/employeeManager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/listCompany.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab_4/static/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab_4/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/services/validation.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/company_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company_update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/createCompany.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/createCompany.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/createEmployee.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/createEmployee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/polls/services/companyManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/delete_company.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/delete_company.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employee_update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listEmployee.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +39,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -45,25 +56,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.lab_4.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Education/HNEU/Programming-Internet/Лр3&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.lab_4.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/Education/HNEU/Programming-Internet/Лр3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\banan\PycharmProjects\lab_4\lab_4" />
@@ -126,7 +139,9 @@
       <workItem from="1711018075808" duration="2833000" />
       <workItem from="1711183171269" duration="17766000" />
       <workItem from="1711224498091" duration="4555000" />
-      <workItem from="1711381825879" duration="11523000" />
+      <workItem from="1711381825879" duration="20729000" />
+      <workItem from="1711893320058" duration="126000" />
+      <workItem from="1711977837630" duration="5430000" />
     </task>
     <task id="LOCAL-00001" summary="Project has created">
       <option name="closed" value="true" />
@@ -176,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711225676996</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added more functions.">
+      <option name="closed" value="true" />
+      <created>1711436692908</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711436692908</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +223,7 @@
     <MESSAGE value="Created templates for applicaion.&#10;Urls and views have been updated." />
     <MESSAGE value="Created a page with C operation(Create) but only Company.&#10;JS has been added &#10;Validation has been added&#10;Need to fix  bugs" />
     <MESSAGE value="Recreated for forms." />
-    <option name="LAST_COMMIT_MESSAGE" value="Recreated for forms." />
+    <MESSAGE value="Added more functions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more functions." />
   </component>
 </project>

@@ -13,6 +13,6 @@ class Employee(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     name = models.CharField(max_length=15)
     position = models.CharField(max_length=20)
-    salary = models.IntegerField(default=0)
+    salary = models.SmallIntegerField(default=0)
     def __str__(self):
         return self.name
