@@ -33,10 +33,13 @@
                 {% csrf_token %}
                 {{ formEmployee.as_p }}
                 <button type="submit" class="btn btn-warning" >Save</button>
+                {% if exist__error %}<p id="exist__error" class="text-danger"><br><strong> {{ exist__error }}</strong></p>{% endif %}
             </form>
             </div>
-         <a href="{% url 'index' %}"><i class="bi bi-arrow-left-square-fill btn-lg" style="font-size: 50px"></i></a>
-        {% if exist__error %}<p id="exist__error" class="text-danger"><strong>{{ exist__error }}</strong></p>{% endif %}
+            <div class="container">
+                <a href="{% url 'listEmployee' %}"><i class="bi bi-arrow-left-square-fill btn-lg" style="font-size: 50px"></i></a>
+            </div>
+        
         </body>
         <script>
              document.addEventListener('DOMContentLoaded', () => {
