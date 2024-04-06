@@ -33,7 +33,7 @@
                 {% csrf_token %}
                 {{ formEmployee.as_p }}
                 <button type="submit" class="btn btn-warning" >Save</button>
-                {% if exist__error %}<p id="exist__error" class="text-danger"><br><strong> {{ exist__error }}</strong></p>{% endif %}
+                {% if exist_error %}<p id="exist__error" class="text-danger"><br><strong> {{ exist_error }}</strong></p>{% endif %}
             </form>
             </div>
             <div class="container">

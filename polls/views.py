@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from polls.forms import CompanyForm, EmployeeForm
 from polls.models import Company, Employee
 from polls.services import companyManager, employeeManager
+from django.views.generic import ListView, View
 
 
 def index(request):
@@ -90,6 +91,40 @@ def listCompany(request):
                   {'companies': companies,
                    'success_message': success_message})
 
+
+class EmployeeListView(ListView):
+    model = Employee
+    template_name = 'listEmployee.html'
+    context_object_name = 'employees'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['success_message'] = self.request.session.pop('success_message', None)
+        return context
+
+
+
+class EmployeeUpdateView(View):
+    def get(self, request, employee_id):
+        employee = get_object_or_404(Employee, pk=employee_id)
+        form = EmployeeForm(instance=employee)
+        return render(request, 'employee_update.html', {'formEmployee': form})
+
+    def post(self, request, employee_id):
+        employee = get_object_or_404(Employee, pk=employee_id)
+        form = EmployeeForm(request.POST, instance=employee)
+        if form.is_valid():
+            if not employeeManager.isHasRightSalary(form.cleaned_data['salary']):
+                return render(request, 'employee_update.html', {'formEmployee': EmployeeForm(instance=employee),
+                                                                'exist_error': "The salary isn't correct, "
+                                                                               "please try again (from 1 to 100000$)"})
+            form.save()
+            success_message = "The employee was successfully updated."
+            request.session['success_message'] = success_message
+            return redirect('listEmployee')
+        return render(request, 'employee_update.html', {'formEmployee': form})
+
+
 def listEmployee(request):
     success_message = request.session.pop('success_message', None)
     employees = Employee.objects.all()
@@ -123,4 +158,4 @@ def delete_employee(request, employee_id):
         success_message = "The employee was successfully deleted."
         request.session['success_message'] = success_message
         return redirect('listEmployee')
-    return render(request, 'delete_company.html', {'employee': employee})
+    return render(request, 'delete_employee.html', {'employee': employee})
